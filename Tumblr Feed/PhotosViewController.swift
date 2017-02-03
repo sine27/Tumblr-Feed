@@ -81,14 +81,24 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             let trail = post["trail"] as! NSArray
             let traildAtZero = trail[0] as! NSDictionary
             let blog = traildAtZero["blog"] as! NSDictionary
-            let theme = blog["theme"] as! NSDictionary
-            let headUrlString =  theme["header_image"]
+//            let theme = blog["theme"] as! NSDictionary
+            //let headUrlString =  theme["header_image"]
+
             
             cell.username.text = blog["name"] as? String
             
-            if let headUrl = URL(string: headUrlString as! String) {
+            let headUrlString = "https://api.tumblr.com/v2/blog/\(cell.username.text!).tumblr.com/avatar"
+            
+            if let headUrl = URL(string: headUrlString) {
                 cell.userhead.setImageWith(headUrl)
             }
+            
+//            let headUrlStr = "https://api.tumblr.com/v2/blog/\(cell.username.text).tumblr.com/avatar"
+//            
+//            if let headUrl = URL(string: headUrlStr) {
+//                cell.userhead.setImageWith(headUrl)
+//            }
+            
         } else {
             cell.textLabel?.text = "This is row \(indexPath.row)"
         }

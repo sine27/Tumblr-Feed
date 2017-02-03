@@ -23,6 +23,8 @@ class PhotoCell: UITableViewCell {
         
         userhead.layer.masksToBounds = true
         userhead.layer.cornerRadius = userhead.frame.width / 2
+        userhead.layer.borderWidth = 3
+        userhead.layer.borderColor = UIColor.black.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
