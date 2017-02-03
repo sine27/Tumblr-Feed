@@ -13,9 +13,16 @@ class PhotoCell: UITableViewCell {
 
     @IBOutlet weak var postImage: UIImageView!
     
+    @IBOutlet weak var username: UILabel!
+    
+    @IBOutlet weak var userhead: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        userhead.layer.masksToBounds = true
+        userhead.layer.cornerRadius = userhead.frame.width / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

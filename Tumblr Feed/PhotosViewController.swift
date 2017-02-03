@@ -15,7 +15,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     var posts: [NSDictionary] = []
     
     @IBOutlet weak var photoTableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -76,6 +76,18 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             let imageUrlString = photos[0].value(forKeyPath: "original_size.url") as? String
             if let imageUrl = URL(string: imageUrlString!) {
                 cell.postImage.setImageWith(imageUrl)
+            }
+            
+            let trail = post["trail"] as! NSArray
+            let traildAtZero = trail[0] as! NSDictionary
+            let blog = traildAtZero["blog"] as! NSDictionary
+            let theme = blog["theme"] as! NSDictionary
+            let headUrlString =  theme["header_image"]
+            
+            cell.username.text = blog["name"] as? String
+            
+            if let headUrl = URL(string: headUrlString as! String) {
+                cell.userhead.setImageWith(headUrl)
             }
         } else {
             cell.textLabel?.text = "This is row \(indexPath.row)"
